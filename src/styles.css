@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "theme/styles.min.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.first.mat-card{
+  margin: 50px;
+  padding: 5px;
+  width: 40%;
+}
+
+.custom.mat-table{
+  width: auto;
+}
+
+.gray-snackbar {
+  color: #64ffda;
+  background: #173B3B;
+}
+
+.mat-simple-snackbar-action {
+  color: white !important;
+}
