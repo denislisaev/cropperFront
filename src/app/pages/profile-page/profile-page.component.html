@@ -1,0 +1,78 @@
+<div *ngIf="!loading">
+  <form class="card"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+  >
+    <div class="card-content">
+      <span class="card-title">Профиль пользователя</span>
+      <label>Email:</label>
+      <div class="input-field">
+        {{user.email}}
+      </div>
+
+      <label>Логин:</label>
+      <div class="input-field">
+        {{user.username}}
+      </div>
+
+      <label for="firstname">Имя:</label>
+      <div class="input-field">
+        <input
+          formControlName = "firstname"
+          id="firstname"
+          type = "text"
+          [ngClass]="{'invalid': form.get('firstname')?.invalid && form.get('firstname')?.touched}"
+        >
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('firstname')?.invalid && form.get('firstname')?.touched"
+        >
+        <span *ngIf="form?.get('firstname')?.errors?.['required']">Поле 'Имя' не должно быть пустым</span>
+      </span>
+      </div>
+
+      <label for="lastname">Фамилия:</label>
+      <div class="input-field">
+        <input
+          formControlName = "lastname"
+          id="lastname"
+          type = "text"
+          [ngClass]="{'invalid': form.get('lastname')?.invalid && form.get('lastname')?.touched}"
+        >
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('lastname')?.invalid && form.get('lastname')?.touched"
+        >
+        <span *ngIf="form?.get('lastname')?.errors?.['required']">Поле 'Фамилия' не должно быть пустым</span>
+      </span>
+      </div>
+
+      <label for="location">Местонахождение:</label>
+      <div class="input-field">
+        <input
+          formControlName = "location"
+          id="location"
+          type = "text"
+          [ngClass]="{'invalid': form.get('location')?.invalid && form.get('location')?.touched}"
+        >
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('location')?.invalid && form.get('location')?.touched"
+        >
+        <span *ngIf="form?.get('location')?.errors?.['required']">Поле 'Местонахождение' не должно быть пустым</span>
+      </span>
+      </div>
+
+    </div>
+    <div class="card-action">
+      <button
+        class="modal-action btn waves-effect"
+        type="submit"
+        [disabled]="form.invalid || form.disabled"
+      >
+        Сохранить
+      </button>
+    </div>
+  </form>
+</div>
+<app-loader *ngIf="loading"></app-loader>

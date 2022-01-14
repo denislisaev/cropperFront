@@ -1,0 +1,26 @@
+<style>
+  .colorT {
+    background-color: #C8D7D7;
+  }
+  a:hover {
+    color: #8FAEB0;
+  }
+</style>
+<ul class="sidenav sidenav-fixed a-sidenav colorT">
+  <Br>
+  <h4>Cropper</h4>
+  <li class="bold"
+      *ngFor="let link of links"
+      routerLinkActive="active"
+  >
+    <a [routerLink]="[link.url]" class="waves-effect waves-teal">
+       {{link.name}}
+    </a>
+  </li>
+  <li class="bold last"><a href="#" class="waves-effect waves-red" (click)="logout($event)" >Выйти</a></li>
+</ul>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+
