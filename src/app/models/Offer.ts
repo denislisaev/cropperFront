@@ -1,10 +1,12 @@
-import {Crop} from "./Crop";
 
 export interface Offer {
-  id?: number;
+  id: number;
+  username:string;
   volume: number;
   pricePerTon: number;
   info?: string;
-  crop: Crop;
+  crop: string;
   typeOffer: boolean;
+  location: string;
+  date: string;
 }

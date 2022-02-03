@@ -6,7 +6,8 @@ export class SnackBarService {
     snackBar.open(message, "Закрыть", {
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
-      panelClass: ['gray-snackbar']
+      panelClass: ['gray-snackbar'],
+      duration: 5000
     })
   }
 }

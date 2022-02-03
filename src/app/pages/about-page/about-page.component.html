@@ -1,1 +1,43 @@
-<p>about-page works!</p>
+<style>
+  .me-avatar-image {
+    background-image: url('assets/img/me.jpg');
+    background-size: cover;
+  }
+</style>
+
+
+<mat-card style="padding: 2%; margin-top: 5%">
+  <mat-card-header>
+    <div mat-card-avatar class="me-avatar-image"></div>
+    <mat-card-title>Денис Лисаев</mat-card-title>
+    <mat-card-subtitle>Главный разработчик</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <a mat-raised-button href="https://vk.com/dlisaev" target="_blank">VK</a>
+    <a mat-raised-button href="https://www.instagram.com/dlisaev/" target="_blank">Instagram</a>
+    <a mat-raised-button target="_blank" (click)="copyMail()">denislisaev@yandex.ru</a>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card style="padding: 2%; margin-top: 1%">
+  <mat-card-header>
+    <mat-card-title>Что такое Cropper?</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Наш сервис предназначен для того, чтобы покупатели и продавцы сельскохозяйственной продукции могли найти друг друга.
+    </p>
+  </mat-card-content>
+</mat-card>
+<mat-card style="padding: 2%; margin-top: 1%">
+  <mat-card-header>
+    <mat-card-title>Где мы находимся?</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      На данный момент наш сервис рассчитан на хозяйства расположенные в Новониколаевском районе Волгоградской области, но обещаем, мы будем расти!
+    </p>
+    <br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10050.977462013636!2d42.35497517714835!3d50.96543046028474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x413d7f96599c0111%3A0x3c594b420d555070!2z0J3QvtCy0L7QvdC40LrQvtC70LDQtdCy0YHQutC40LksINCS0L7Qu9Cz0L7Qs9GA0LDQtNGB0LrQsNGPINC-0LHQuy4!5e0!3m2!1sru!2sru!4v1642164963706!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </mat-card-content>
+</mat-card>

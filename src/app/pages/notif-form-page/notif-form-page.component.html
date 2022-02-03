@@ -1,0 +1,73 @@
+<form class="card"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+>
+  <div class="card-content">
+    <span class="card-title">Создать новое сообщение</span>
+
+    <div *ngIf="isUsername">
+      <label for="usernameTo">Логин получателя:</label>
+      <div class="input-field">
+        <input
+          formControlName = "usernameTo"
+          id="usernameTo"
+          type="text"
+          [ngClass]="{'invalid': form.get('usernameTo')?.invalid && form.get('usernameTo')?.touched}"
+        >
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('usernameTo')?.invalid && form.get('usernameTo')?.touched"
+        >
+        <span *ngIf="form?.get('usernameTo')?.errors?.['required']">Поле 'Логин получателя' не должно быть пустым</span>
+      </span>
+      </div>
+    </div>
+
+    <div *ngIf="!isUsername">
+      <H2 for="usernameTo">Логин получателя: {{username}}</H2>
+    </div>
+
+    <label for="title">Заголовок сообщения:</label>
+    <div class="input-field">
+      <input
+        formControlName = "title"
+        id="title"
+        type="text"
+        [ngClass]="{'invalid': form.get('title')?.invalid && form.get('title')?.touched}"
+      >
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+      >
+        <span *ngIf="form?.get('title')?.errors?.['required']">Поле 'Текст сообщения' не должно быть пустым</span>
+      </span>
+    </div>
+
+    <label for="message">Текст сообщения:</label>
+    <div class="input-field">
+      <input
+        formControlName = "message"
+        id="message"
+        type="text"
+        [ngClass]="{'invalid': form.get('message')?.invalid && form.get('message')?.touched}"
+      >
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('message')?.invalid && form.get('message')?.touched"
+      >
+        <span *ngIf="form?.get('message')?.errors?.['required']">Поле 'Заголовок' не должно быть пустым</span>
+      </span>
+    </div>
+
+  </div>
+  <div class="card-action">
+    <button
+      class="modal-action btn waves-effect"
+      type="submit"
+      [disabled]="form.invalid || form.disabled"
+    >
+      Создать
+    </button>
+  </div>
+</form>
+

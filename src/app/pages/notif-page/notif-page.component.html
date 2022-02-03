@@ -1,1 +1,52 @@
-<p>notif-page works!</p>
+<div class="page-title">
+  <h4 style="color: white">Ваши уведомления</h4>
+  <button
+    class="waves-effect waves-teal btn white black-text"
+    routerLink="/notif/new"
+  >Написать</button>
+</div>
+<div
+  class="row"
+  *ngIf="notifs; else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="notifs.length !== 0; else empty">
+      <mat-card>
+        <form class="example-form">
+          <input matInput placeholder="Искать" (input)="onSearchChange($event)">
+        </form>
+
+        <a
+          *ngFor="let notif of notifData"
+          class="collection-item"
+        >
+
+          <mat-card routerLink="/notif/chat/{{notif.username}}">
+            <mat-card-title>{{notif.username}}</mat-card-title>
+            <Br>
+            <mat-card-content>
+              <h2>Последнее сообщение от {{notif.usernameFrom}}</h2>
+              <h3>Тема: "{{notif.title}}"</h3>
+              <p>
+                {{notif.message}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button routerLink="/notif/new/{{notif.username}}">Ответить</button>
+            </mat-card-actions>
+          </mat-card>
+        </a>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <div class="center" >
+    <h2 style="color: white">У вас пока нет уведомлений</h2>
+  </div>
+</ng-template>

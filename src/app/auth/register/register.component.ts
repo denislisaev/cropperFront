@@ -54,6 +54,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit(): void {
+    if (this.auth.isAuthenticated()){
+      this.router.navigate(['/profile'])
+    }
+
     this.form = this.formBuilder.group({
       username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -88,10 +92,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         })
       },
       error => {
-        SnackBarService.showMessage(this.snackBar, error?.message)
-        for (let key in error) {
-          SnackBarService.showMessage(this.snackBar, error[key])
-        }
+        console.log(Object.keys(error))
+        console.log(error.status)
+        console.log(error.error)
+        SnackBarService.showMessage(this.snackBar, error?.message??'' + " " + error?.error??'')
         this.form.enable()
       }
     )

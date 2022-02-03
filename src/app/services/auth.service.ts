@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, tap} from "rxjs";
+import {Observable, Subscription, tap} from "rxjs";
 import {TokenStorageService} from "./token-storage.service";
+import {Offer} from "../models/Offer";
 
 const AUTH_API = 'http://localhost:8080/api/auth';
+const USER_API = 'http://localhost:8080/api/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService{
+  roles! : string[]
+  rSub! : Subscription
 
   constructor(private httpclient: HttpClient, private tokenStorageService:TokenStorageService) { }
 
@@ -35,6 +39,12 @@ export class AuthService {
       password : user.password,
       confirmPassword : user.confirmPassword
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.rSub) {
+      this.rSub.unsubscribe()
+    }
   }
 
   public isAuthenticated(): boolean{

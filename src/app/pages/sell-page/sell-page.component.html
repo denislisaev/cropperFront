@@ -1,1 +1,67 @@
-<p>sell-page works!</p>
+<div class="page-title">
+  <h4 style="color: white">Объявления о покупке</h4>
+  <button
+    class="waves-effect waves-teal btn white black-text"
+    routerLink="/sell/new"
+  >Добавить объявление о продаже</button>
+</div>
+
+<div
+  class="row"
+  *ngIf="offers$ | async as offers; else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="offers.length !== 0; else empty">
+      <mat-card>
+        <table matSort (matSortChange)="sortData($event)">
+          <tr>
+            <th mat-sort-header="user">Покупатель</th>
+            <th mat-sort-header="crop">Тип культуры</th>
+            <th mat-sort-header="price">Цена</th>
+            <th mat-sort-header="volume">Объем</th>
+            <th mat-sort-header="location">Местоположение</th>
+            <th mat-sort-header="date">Дата создания</th>
+          </tr>
+        </table>
+      </mat-card>
+      <mat-paginator [length]="length"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="[5, 10, 25, 100]"
+                     (page)="onPaginateChange($event)"
+                     >
+      </mat-paginator>
+      <a
+        *ngFor="let offer of sortedData"
+        class="collection-item"
+      >
+        <mat-card>
+          <mat-card-title>Покупатель: {{offer.username}}</mat-card-title>
+          <mat-card-subtitle>Тип культуры: {{offer.crop}}</mat-card-subtitle>
+          <mat-card-subtitle>Предлагаемая цена за тонну: {{offer.pricePerTon}}</mat-card-subtitle>
+          <mat-card-subtitle>Объем (в тоннах): {{offer.volume}}</mat-card-subtitle>
+          <mat-card-subtitle>Местоположение: {{offer.location}} </mat-card-subtitle>
+          <mat-card-subtitle>Дата создания: {{offer.date}} </mat-card-subtitle>
+          <mat-card-content>
+            <p>
+              {{offer.info}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button routerLink="/notif/new/{{offer.username}}">Написать покупателю</button>
+            <button *ngIf="isAdmin" mat-raised-button color="warn" (click)="deleteOffer(offer.id)">Удалить</button>
+          </mat-card-actions>
+        </mat-card>
+      </a>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <div class="center" >
+    <h2 style="color: white">Пока нет ни одного объявления, станьте первым!</h2>
+  </div>
+</ng-template>

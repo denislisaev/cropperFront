@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Offer} from "../models/Offer";
+import {OfferList} from "../models/OfferList";
 
 const OFFER_API = 'http://localhost:8080/api/offer/';
 
@@ -15,24 +17,32 @@ export class OfferService {
     return this.httpclient.post(OFFER_API + 'create', offer);
   }
 
-  getAllOffers(): Observable<any>{
-    return this.httpclient.get(OFFER_API + 'all');
+  getAllOffers(): Observable<Offer[]>{
+    return this.httpclient.get<Offer[]>(OFFER_API + 'all');
   }
 
-  getAllSellOffers(): Observable<any>{
-    return this.httpclient.get(OFFER_API + 'all/sell');
+  getAllSellOffers(): Observable<Offer[]>{
+    return this.httpclient.get<Offer[]>(OFFER_API + 'all/sell');
   }
 
-  getAllBuyOffers(): Observable<any>{
-    return this.httpclient.get(OFFER_API + 'all/buy');
+  getAllBuyOffers(): Observable<Offer[]>{
+    return this.httpclient.get<Offer[]>(OFFER_API + 'all/buy');
   }
 
-  getOffersForCurrentUser(): Observable<any>{
-    return this.httpclient.get(OFFER_API+'user/offers')
+  getAllBuyOffersOnPage(page : number, offersOnPage : number): Observable<OfferList>{
+    return this.httpclient.get<OfferList>(OFFER_API + 'all/buy/' + page + "/" + offersOnPage);
+  }
+
+  getOffersForCurrentUser(): Observable<Offer[]>{
+    return this.httpclient.get<Offer[]>(OFFER_API+'user/offers')
   }
 
   delete(id: number):Observable<any>{
     return this.httpclient.post(OFFER_API+id+'/delete', null)
+  }
+
+  updateOffer(offer: any):Observable<any>{
+    return this.httpclient.post(OFFER_API + offer.id + '/update', offer);
   }
 
 }

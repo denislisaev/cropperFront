@@ -17,6 +17,14 @@
        {{link.name}}
     </a>
   </li>
+  <li
+    *ngIf=isAdmin
+    routerLinkActive="active"
+  >
+    <a [routerLink]="'/admin'" class="waves-effect waves-teal">
+      Админ панель
+    </a>
+  </li>
   <li class="bold last"><a href="#" class="waves-effect waves-red" (click)="logout($event)" >Выйти</a></li>
 </ul>
 

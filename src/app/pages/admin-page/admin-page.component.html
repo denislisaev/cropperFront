@@ -1,0 +1,87 @@
+<mat-card style="padding: 2%; margin-top: 5%">
+  <mat-card-header>
+    <mat-card-title>Панель администратора</mat-card-title>
+  </mat-card-header>
+
+  <mat-grid-list cols="6" rowHeight="1:2">
+    <mat-grid-tile [colspan]=2>
+      <div>
+        <mat-card *ngIf="cropsOnPage; else loader">
+          <mat-selection-list #cropsList [multiple]="false" (selectionChange)="selectCrop(cropsList.selectedOptions.selected[0]?.value)">
+            <mat-list-option *ngFor="let crop of cropsOnPage" [value]="crop">
+              {{crop.name}}
+            </mat-list-option>
+            <button mat-raised-button color="warn" style="width: 100%;" (click)="deleteCrop()">Удалить</button>
+          </mat-selection-list>
+        </mat-card>
+        <mat-paginator [length]="cropLength"
+                       [pageSize]="cropPageSize"
+                       [pageIndex]="cropPageIndex"
+                       (page)="onCropPaginateChange($event)"
+        >
+        </mat-paginator>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <form class="card"
+            [formGroup]="form"
+            (ngSubmit)="onSubmit()"
+      >
+        <div class="card-content">
+          <span class="card-title">Добавить культуру</span>
+          <label for="cropName">Название: </label>
+          <div class="input-field">
+            <input
+              formControlName = "cropName"
+              id="cropName"
+              type="text"
+              [ngClass]="{'invalid': form.get('cropName')?.invalid && form.get('cropName')?.touched}"
+            >
+            <span
+              class="helper-text red-text"
+              *ngIf="form.get('cropName')?.invalid && form.get('cropName')?.touched"
+            >
+        <span *ngIf="form?.get('cropName')?.errors?.['required']">Поле 'Название' не должно быть пустым</span>
+      </span>
+          </div>
+        </div>
+        <div class="card-action">
+          <button
+            class="modal-action btn waves-effect"
+            type="submit"
+            [disabled]="form.invalid || form.disabled"
+          >
+            Добавить
+          </button>
+        </div>
+      </form>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=3>
+
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=2>
+      <div>
+        <mat-card *ngIf="usersOnPage; else loader">
+          <mat-card-title>Список  пользователей: </mat-card-title>
+          <mat-selection-list #usersList [multiple]="false" (selectionChange)="selectUser(usersList.selectedOptions.selected[0]?.value)">
+            <mat-list-option *ngFor="let user of usersOnPage" [value]="user">
+              {{user.username}}
+            </mat-list-option>
+            <button mat-raised-button color="warn" style="width: 100%;" (click)="deleteUser()">Удалить</button>
+          </mat-selection-list>
+        </mat-card>
+        <mat-paginator [length]="userLength"
+                       [pageSize]="userPageSize"
+                       [pageIndex]="userPageIndex"
+                       (page)="onUserPaginateChange($event)"
+        >
+        </mat-paginator>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</mat-card>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

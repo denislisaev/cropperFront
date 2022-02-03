@@ -13,12 +13,28 @@ export class UserService {
 
   constructor(private httpclient: HttpClient) { }
 
-  getUserById(id: Number): Observable<any> {
-    return this.httpclient.get(USER_API + id);
+  deleteUserByUsername(username : String):Observable<any> {
+    return this.httpclient.delete(USER_API + username + "/delete");
+  }
+
+  getUserById(id: Number): Observable<User> {
+    return this.httpclient.get<User>(USER_API + id);
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.httpclient.get<User[]>(USER_API + "users");
+  }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.httpclient.get<User>(USER_API + "username/" + username);
   }
 
   getCurrentUser(): Observable<User>{
     return this.httpclient.get<User>(USER_API);
+  }
+
+  getRoleUser(): Observable<String[]>{
+    return this.httpclient.get<String[]>(USER_API + 'role');
   }
 
   public update(user: any): Observable<any>{

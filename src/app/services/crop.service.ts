@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {Crop} from "../models/Crop";
 
-const CROP_API = 'http://localhost:8080/api/crop/';
+const CROP_API = 'http://localhost:8080/api/crop';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,14 @@ export class CropService {
   constructor(private httpclient: HttpClient) { }
 
   createCrop(crop: any) :Observable<any> {
-    return this.httpclient.post(CROP_API + 'create', crop);
+    return this.httpclient.post(CROP_API + '/create', crop);
   }
 
-  getCropsForCurrentUser(): Observable<any>{
-    return this.httpclient.get(CROP_API +'user/crops')
+  getCrops(): Observable<any>{
+    return this.httpclient.get<Crop[]>(CROP_API +'/crops')
   }
 
   delete(id: number):Observable<any>{
-    return this.httpclient.post(CROP_API + id +'/delete', null)
+    return this.httpclient.delete(CROP_API + "/" + id +'/delete')
   }
 }

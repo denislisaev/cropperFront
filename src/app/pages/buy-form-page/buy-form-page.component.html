@@ -1,0 +1,79 @@
+<form class="card"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+>
+  <div class="card-content">
+    <span class="card-title">Создать объявление о покупке</span>
+    <label for="volume">Объем (в тоннах):</label>
+    <div class="input-field">
+      <input
+        formControlName = "volume"
+        id="volume"
+        type="number"
+        [ngClass]="{'invalid': form.get('volume')?.invalid && form.get('volume')?.touched}"
+      >
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('volume')?.invalid && form.get('volume')?.touched"
+      >
+        <span *ngIf="form?.get('volume')?.errors?.['required']">Поле 'Объем' не должно быть пустым</span>
+      </span>
+    </div>
+
+    <label for="volume">Цена за тонну (в рублях):</label>
+    <div class="input-field">
+      <input
+        formControlName = "price"
+        id="price"
+        type="number"
+        [ngClass]="{'invalid': form.get('price')?.invalid && form.get('price')?.touched}"
+      >
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('price')?.invalid && form.get('price')?.touched"
+      >
+        <span *ngIf="form?.get('price')?.errors?.['required']">Поле 'Цена за тонну' не должно быть пустым</span>
+      </span>
+    </div>
+
+    <label for="volume">Дополнительная информация (контактные данные, краткое описание):</label>
+    <div class="input-field">
+      <input
+        formControlName = "info"
+        id="info"
+        type="text"
+        [ngClass]="{'invalid': form.get('info')?.invalid && form.get('info')?.touched}"
+      >
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('info')?.invalid && form.get('info')?.touched"
+      >
+        <span *ngIf="form?.get('info')?.errors?.['required']">Поле 'Дополнительная информация' не должно быть пустым</span>
+      </span>
+    </div>
+
+    <h4>Выберите культуру</h4>
+    <mat-form-field appearance="fill" *ngIf="crops$ | async as crops; else loader">
+      <mat-label>Культура</mat-label>
+      <mat-select [(value)]="selectedCrop">
+        <mat-option *ngFor="let crop of crops" [value]="crop.name">
+          {{crop.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <ng-template #loader>
+      <app-loader></app-loader>
+    </ng-template>
+
+  </div>
+  <div class="card-action">
+    <button
+      class="modal-action btn waves-effect"
+      type="submit"
+      [disabled]="form.invalid || form.disabled"
+    >
+      Создать
+    </button>
+  </div>
+</form>

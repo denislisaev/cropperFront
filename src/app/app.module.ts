@@ -13,7 +13,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
 import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.component';
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LoaderComponent } from './materials/loader/loader.component';
 import {MatGridListModule} from "@angular/material/grid-list";
@@ -23,6 +23,16 @@ import { SellPageComponent } from './pages/sell-page/sell-page.component';
 import { BuyPageComponent } from './pages/buy-page/buy-page.component';
 import { NotifPageComponent } from './pages/notif-page/notif-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { SellFormPageComponent } from './pages/sell-form-page/sell-form-page.component';
+import { BuyFormPageComponent } from './pages/buy-form-page/buy-form-page.component';
+import {MatSelectModule} from "@angular/material/select";
+import { NotifFormPageComponent } from './pages/notif-form-page/notif-form-page.component';
+import {MatSortModule} from "@angular/material/sort";
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
+import {getRusPaginatorIntl} from "./paginators/russian-paginator-intl";
+import { ChatPageComponent } from './pages/chat-page/chat-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +47,13 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
     SellPageComponent,
     BuyPageComponent,
     NotifPageComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    SellFormPageComponent,
+    BuyFormPageComponent,
+    NotifFormPageComponent,
+    AdminPageComponent,
+    NotFoundPageComponent,
+    ChatPageComponent
   ],
     imports: [
         BrowserModule,
@@ -49,10 +65,15 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
         ReactiveFormsModule,
         MatSnackBarModule,
         MatGridListModule,
-        MatListModule
+        MatListModule,
+        MatSelectModule,
+        MatSortModule,
+        MatPaginatorModule
     ],
   providers: [authInterceptorProviders,
-    authErrorInterceptorProviders],
+    authErrorInterceptorProviders,
+    { provide: MatPaginatorIntl, useValue: getRusPaginatorIntl() }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

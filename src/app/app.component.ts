@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {TokenStorageService} from "./services/token-storage.service";
+import {AuthService} from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import {TokenStorageService} from "./services/token-storage.service";
 })
 export class AppComponent {
   title = 'Cropper';
-  constructor(private tokenStorage : TokenStorageService) {
+  constructor(private tokenStorage : TokenStorageService, private authService : AuthService) {
   }
 
   ngOnInit(){

@@ -1,0 +1,47 @@
+<div class="page-title">
+  <h4 style="color: white">Ваша переписка с {{username}}</h4>
+  <button
+    class="waves-effect waves-teal btn white black-text"
+    routerLink="/notif/new/{{username}}"
+  >Написать</button>
+</div>
+
+<div
+  class="row"
+  *ngIf="notifsOnPage else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="notifsOnPage.length !== 0; else empty">
+      <mat-paginator [length]="lengthNotif"
+                     [pageSize]="pageSizeNotif"
+                     [pageSizeOptions]="[5, 10, 25]"
+                     (page)="onPaginateChangeNotif($event)"
+      >
+      </mat-paginator>
+      <a
+        *ngFor="let notif of notifsOnPage"
+        class="collection-item"
+      >
+        <mat-card>
+          <mat-card-title>{{notif.usernameFrom}}: {{notif.title}}</mat-card-title>
+          <mat-card-subtitle>{{notif.createDate}}</mat-card-subtitle>
+          <mat-card-content>
+            <p>
+              {{notif.message}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <div class="center" >
+    <h2 style="color: white">У вас пока нет уведомлений</h2>
+  </div>
+</ng-template>
