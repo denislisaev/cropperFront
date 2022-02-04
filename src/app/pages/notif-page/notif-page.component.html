@@ -15,7 +15,9 @@
         <form class="example-form">
           <input matInput placeholder="Искать" (input)="onSearchChange($event)">
         </form>
-
+        <div *ngIf="notifData.length === 0" class="center">
+          <h2 style="color: black">Ничего не найдено!</h2>
+        </div>
         <a
           *ngFor="let notif of notifData"
           class="collection-item"
@@ -48,5 +50,11 @@
 <ng-template #empty>
   <div class="center" >
     <h2 style="color: white">У вас пока нет уведомлений</h2>
+  </div>
+</ng-template>
+
+<ng-template #notSearched>
+  <div class="center" >
+    <h2 style="color: white">Ничего не найдено!</h2>
   </div>
 </ng-template>

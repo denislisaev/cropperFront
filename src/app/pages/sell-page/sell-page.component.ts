@@ -33,6 +33,9 @@ export class SellPageComponent implements OnInit {
     if (this.oSub) {
       this.oSub.unsubscribe()
     }
+    if (this.aSub) {
+      this.aSub.unsubscribe()
+    }
   }
 
   ngOnInit(): void {
@@ -119,9 +122,12 @@ export class SellPageComponent implements OnInit {
         }
         SnackBarService.showMessage(this.snackBar, "Объявдение удалено!")
       }, error => {
-        SnackBarService.showMessage(this.snackBar, error?.message)
-        for (let key in error) {
-          SnackBarService.showMessage(this.snackBar, error[key])
+        if (error?.message){
+          SnackBarService.showMessage(this.snackBar, error?.message)
+        } else {
+          if (error.status){
+            SnackBarService.showMessage(this.snackBar, "Ошибка! Код: " + error.status)
+          }
         }
       })
     })

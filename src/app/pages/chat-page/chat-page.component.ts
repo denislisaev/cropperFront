@@ -24,6 +24,12 @@ export class ChatPageComponent implements OnInit {
     this.username = activateRoute.snapshot.params['username'];
   }
 
+  ngOnDestroy(): void {
+    if (this.nSub){
+      this.nSub.unsubscribe()
+    }
+  }
+
   ngOnInit(): void {
     this.nSub = this.notificationService.getNotificationsForCurrentUserToUser(this.activateRoute.snapshot.params['username']).subscribe(
       (notifs)=>{

@@ -46,6 +46,10 @@ export class AdminPageComponent implements OnInit {
     if (this.cropSub){
       this.cropSub.unsubscribe()
     }
+
+    if (this.userSub){
+      this.userSub.unsubscribe()
+    }
   }
 
   ngOnInit(): void {
@@ -98,9 +102,12 @@ export class AdminPageComponent implements OnInit {
         })
       },
       error => {
-        SnackBarService.showMessage(this.snackBar, error?.message)
-        for (let key in error) {
-          SnackBarService.showMessage(this.snackBar, error[key])
+        if (error?.message){
+          SnackBarService.showMessage(this.snackBar, error?.message)
+        } else {
+          if (error.status){
+            SnackBarService.showMessage(this.snackBar, "Ошибка! Код: " + error.status)
+          }
         }
         this.form.enable()
       }

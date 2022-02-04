@@ -18,6 +18,12 @@ export class NotifPageComponent implements OnInit {
     this.filter = null
   }
 
+  ngOnDestroy(): void {
+    if (this.nSub){
+      this.nSub.unsubscribe()
+    }
+  }
+
   ngOnInit(): void {
     this.nSub = this.notificationService.getPresentNotificationsForCurrentUser().subscribe(
       (notifs)=>{

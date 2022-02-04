@@ -56,9 +56,6 @@
         </div>
       </form>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]=3>
-
-    </mat-grid-tile>
     <mat-grid-tile [colspan]=2>
       <div>
         <mat-card *ngIf="usersOnPage; else loader">
@@ -78,6 +75,7 @@
         </mat-paginator>
       </div>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]=1> </mat-grid-tile>
   </mat-grid-list>
 
 </mat-card>

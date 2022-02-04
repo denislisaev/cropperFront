@@ -110,7 +110,13 @@ export class ProfilePageComponent implements OnInit {
         SnackBarService.showMessage(this.snackBar, "Данные успешно сохранены")
       },
       error => {
-        SnackBarService.showMessage(this.snackBar, error.message)
+        if (error?.message){
+          SnackBarService.showMessage(this.snackBar, error?.message)
+        } else {
+          if (error.status){
+            SnackBarService.showMessage(this.snackBar, "Ошибка! Код: " + error.status)
+          }
+        }
       }
     )
   }
@@ -175,9 +181,12 @@ export class ProfilePageComponent implements OnInit {
         SnackBarService.showMessage(this.snackBar, "Отредактировано")
       },
       error => {
-        SnackBarService.showMessage(this.snackBar, error?.message)
-        for (let key in error) {
-          SnackBarService.showMessage(this.snackBar, error[key])
+        if (error?.message){
+          SnackBarService.showMessage(this.snackBar, error?.message)
+        } else {
+          if (error.status){
+            SnackBarService.showMessage(this.snackBar, "Ошибка! Код: " + error.status)
+          }
         }
       }
     )
@@ -190,7 +199,13 @@ export class ProfilePageComponent implements OnInit {
         this.offers$ = this.offerService.getOffersForCurrentUser()
         SnackBarService.showMessage(this.snackBar, "Объявление удалено")},
       error => {
-        SnackBarService.showMessage(this.snackBar, error.message)
+        if (error?.message){
+          SnackBarService.showMessage(this.snackBar, error?.message)
+        } else {
+          if (error.status){
+            SnackBarService.showMessage(this.snackBar, "Ошибка! Код: " + error.status)
+          }
+        }
     })
   }
 
