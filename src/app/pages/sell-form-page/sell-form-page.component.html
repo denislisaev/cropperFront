@@ -10,6 +10,8 @@
         formControlName = "volume"
         id="volume"
         type="number"
+        min="1"
+        max="100000"
         [ngClass]="{'invalid': form.get('volume')?.invalid && form.get('volume')?.touched}"
       >
       <span
@@ -26,6 +28,8 @@
         formControlName = "price"
         id="price"
         type="number"
+        min="1"
+        max="1000000"
         [ngClass]="{'invalid': form.get('price')?.invalid && form.get('price')?.touched}"
       >
       <span

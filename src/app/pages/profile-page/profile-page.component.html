@@ -145,6 +145,8 @@
                         formControlName="volume"
                         id="volume"
                         type="number"
+                        min="1"
+                        max="1000000"
                         [ngClass]="{'invalid': offerForm.get('volume')?.invalid && offerForm.get('volume')?.touched}"
                       >
                       <span
@@ -161,6 +163,8 @@
                         formControlName="price"
                         id="price"
                         type="number"
+                        min="1"
+                        max="1000000"
                         [ngClass]="{'invalid': offerForm.get('price')?.invalid && offerForm.get('price')?.touched}"
                       >
                       <span

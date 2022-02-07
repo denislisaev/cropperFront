@@ -5,7 +5,7 @@ export class SnackBarService {
   static showMessage(snackBar: MatSnackBar, message : string){
     snackBar.open(message, "Закрыть", {
       horizontalPosition: 'end',
-      verticalPosition: 'bottom',
+      verticalPosition: 'top',
       panelClass: ['gray-snackbar'],
       duration: 5000
     })
