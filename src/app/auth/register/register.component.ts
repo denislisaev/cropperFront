@@ -64,8 +64,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       firstname: new FormControl(null, [Validators.required]),
       lastname: new FormControl(null, [Validators.required]),
       location: new FormControl(null, [Validators.required]),
-      password: new FormControl(null,[Validators.required]),
-      confirmPassword: new FormControl(null,[Validators.required])
+      password: new FormControl(null,[Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl(null,[Validators.required, Validators.minLength(6)])
     },
       {
         validators: [Validation.match('password', 'confirmPassword')]
