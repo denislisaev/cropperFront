@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Notification} from "../models/Notification";
 
-const NOTIF_API = 'http://localhost:8080/api/notification/';
+const NOTIF_API = 'https://cropper-nc.herokuapp.com/api/notification/';
 
 @Injectable({
   providedIn: 'root'

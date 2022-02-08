@@ -1,11 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, Subscription, tap} from "rxjs";
 import {TokenStorageService} from "./token-storage.service";
-import {Offer} from "../models/Offer";
 
-const AUTH_API = 'http://localhost:8080/api/auth';
-const USER_API = 'http://localhost:8080/api/user';
+const AUTH_API = 'https://cropper-nc.herokuapp.com/api/auth';
 
 @Injectable({
   providedIn: 'root'

@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/User";
 
-const USER_API = 'http://localhost:8080/api/user/';
+const USER_API = 'https://cropper-nc.herokuapp.com/api/user/';
 
 
 @Injectable({

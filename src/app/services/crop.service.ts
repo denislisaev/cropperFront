@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Crop} from "../models/Crop";
 
-const CROP_API = 'http://localhost:8080/api/crop';
+const CROP_API = 'https://cropper-nc.herokuapp.com/api/crop';
 
 @Injectable({
   providedIn: 'root'

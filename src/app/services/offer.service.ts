@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Offer} from "../models/Offer";
 import {OfferList} from "../models/OfferList";
 
-const OFFER_API = 'http://localhost:8080/api/offer/';
+const OFFER_API = 'https://cropper-nc.herokuapp.com/api/offer/';
 
 @Injectable({
   providedIn: 'root'
